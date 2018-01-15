@@ -54,7 +54,7 @@ get_header(); ?>
 				<?php else:  ?>
 					<p>Нет записей </p>
 				<?php endif;
-			} 
+			} else{	echo '<p>Нет записей </p>';}
 		}else{
 
 			$params = array('post_type' => 'nedvigimost');
