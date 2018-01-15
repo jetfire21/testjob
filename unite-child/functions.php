@@ -99,72 +99,33 @@ function as21_custom_type_nedvigimost()
 
 }
 
+// проверка,активирован ли плагин Posts 2 Posts
+// cвязывание агенства с недвижимостями
+  if ( class_exists('scbLoad4') ){
 
-function my_connection_types() {
-	p2p_register_connection_type( array(
-		'name' => 'posts_to_pages',
-		'from' => 'agentstvo',
-		'to' => 'nedvigimost'
-	) );
-}
-add_action( 'p2p_init', 'my_connection_types' );
-
-
-p2p_register_connection_type( array(
-  'name' => 'my_connection_type',
-  'from' => 'page',
-  'to' => 'user',
-  'admin_box' => array(
-    'show' => 'any',
-    'context' => 'side'
-  )
-) );
+    function my_connection_types() {
+    	p2p_register_connection_type( array(
+    		'name' => 'posts_to_pages',
+    		'from' => 'agentstvo',
+    		'to' => 'nedvigimost'
+    	) );
+    }
+    add_action( 'p2p_init', 'my_connection_types' );
 
 
-
-
-add_action('wp_footer','as21_lala');
-function as21_lala(){
-
-
-
-/*
-echo '<hr>';
-		// Find connected pages
-		$connected = new WP_Query( array(
-		  'connected_type' => 'posts_to_pages',
-		  'connected_items' => get_queried_object(),
-		  'nopaging' => true,
-		) );
-// alex_debug(0,1,'',$connected);
-		// Display connected pages
-		if ( $connected->have_posts() ) :
-			echo '<hr>';
-			global $wpdb;
-		?>
-		<h3>Related pages:</h3>
-		<ul>
-		<?php while ( $connected->have_posts() ) : $connected->the_post(); ?>
-		<?php	$id = get_the_ID();?>
-			<!--<li><a href="<?php the_permalink(); ?>?nedv=<? echo $id;?>"><?php the_title();  echo $id;?></a></li>-->
-			<li><a href="<?php echo site_url(); ?>?nedv=<? echo $id;?>"><?php the_title();  echo $id;?></a></li>
-			 <?php
-
-	// deb_last_query();
-			?>
-		<?php endwhile; ?>
-		</ul>
-		<?php 
-		// Prevent weirdness
-		wp_reset_postdata();
-
-		endif;
-*/
-
-
-
+    p2p_register_connection_type( array(
+      'name' => 'my_connection_type',
+      'from' => 'page',
+      'to' => 'user',
+      'admin_box' => array(
+        'show' => 'any',
+        'context' => 'side'
+      )
+    ) );
 
 }
+
+
 
 function deb_last_query(){
 

@@ -59,7 +59,16 @@ get_header(); ?>
 
 			$params = array('post_type' => 'nedvigimost');
 			// $params = array('posts_per_page' => 15, array('post_type' => 'nedvigimost','agentstvo'=>'Азбука жилья') );
-			$wc_query = new WP_Query($params);
+
+			// фрагментарное кэширование
+			$wc_query = get_transient( 'wc_query' );
+			if ( false === $wc_query ) {
+				// Данные получить не удалось, поэтому, создадим их и сохраним
+				$wc_query = new WP_Query($params);
+				set_transient( 'wc_query', $wc_query,12 * HOUR_IN_SECONDS ); // сохраняем результат sql запроса в бд на 12 часов
+			}
+
+			// $wc_query = new WP_Query($params);
 			?>
 			<?php if ($wc_query->have_posts()) : ?>
 				<?php while ($wc_query->have_posts()) : $wc_query->the_post(); ?>
